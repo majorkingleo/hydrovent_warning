@@ -96,6 +96,14 @@ public:
 	  end (  { std::stoul( matches[2] ),
 			   std::stoul( matches[3] ) } )
 	{}
+
+	/**
+	 * tests if this a valid line
+	 *   - horizantal
+	 *   - vertical
+	 *   - 45° lines and any multiples of 45° are allowed
+	 */
+	bool isValid() const;
 };
 
 class HydrothermalVentingFileParser : public RegexBasedFileParser<HydrothermalVentingLine>

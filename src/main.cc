@@ -11,7 +11,7 @@
 int main()
 {
 	try {
-		HydrothermalVentingFileParser parser( "test.txt" );
+		HydrothermalVentingFileParser parser( "testdata/InputFileLineSegments.txt" );
 
 		parser.open();
 
