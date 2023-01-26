@@ -27,8 +27,9 @@ public:
 					const std::string & x2,
 					const std::string & y2,
 					const std::string & name,
+					bool expected_result = true,
 					bool throws_exception = false )
-    : TestCaseBase( format( x1, y2, x2, y2 ) + ": " + name, false ),
+    : TestCaseBase( format( x1, y1, x2, y2 ) + ": " + name, expected_result, false ),
       x1(x1),
       y1(y1),
       x2(x2),
@@ -68,7 +69,12 @@ int main()
 	try {
 
 		std::vector<std::shared_ptr<TestCaseBase>> test_cases;
-		test_cases.push_back( std::make_shared<TestCaseSimple>("1", "1", "2", "2", "simple 45°", false ) );
+		test_cases.push_back( std::make_shared<TestCaseSimple>("1", "1", "2", "2", "simple 45°", true, false ) );
+		test_cases.push_back( std::make_shared<TestCaseSimple>("2", "2", "1", "1", "reverse simple 45°", true, false ) );
+		test_cases.push_back( std::make_shared<TestCaseSimple>("20", "2", "1", "1","invalid 45°", false, false ) );
+
+		test_cases.push_back( std::make_shared<TestCaseSimple>("2", "2", "1", "2","horizontal", true, false ) );
+		test_cases.push_back( std::make_shared<TestCaseSimple>("5", "4", "5", "2","vertical", true, false ) );
 
 
 		ColBuilder col;
@@ -92,6 +98,11 @@ int main()
 
 			std::string result;
 			std::string expected_result = "true";
+
+			if( !test->getExpectedResult() ) {
+				expected_result = "false";
+			}
+
 			std::string test_result;
 
 			try {

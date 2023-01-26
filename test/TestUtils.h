@@ -15,11 +15,15 @@ class TestCaseBase
 protected:
     std::string name;
     bool throws_exception;
+    const bool expected_result;
 
 public:
-    TestCaseBase( const std::string & name_, bool throws_exception_ = false )
+    TestCaseBase( const std::string & name_,
+    			  bool expected_result_ = true,
+    			  bool throws_exception_ = false )
     : name( name_ ),
-      throws_exception( throws_exception_ )
+      throws_exception( throws_exception_ ),
+      expected_result( expected_result_ )
     {}
 
     virtual ~TestCaseBase() {}
@@ -32,6 +36,10 @@ public:
 
     bool throwsException() const {
         return throws_exception;
+    }
+
+    bool getExpectedResult() const {
+    	return expected_result;
     }
 };
 
