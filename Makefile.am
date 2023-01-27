@@ -1,13 +1,18 @@
 bin_PROGRAMS=\
 	hydrovent_warning \
-	test_HydrothermalVentingLine
+	test_HydrothermalVentingLine \
+	test_CrossMap
 
 hydrovent_warning_SOURCES=\
 	src/main.cc \
 	src/FileBaseParser.h \
 	src/FileBaseParser.cc \
 	src/HydrothermalVentingFileParser.h \
-	src/HydrothermalVentingFileParser.cc		 
+	src/HydrothermalVentingFileParser.cc \
+	src/HydrothermalVentingLine.h \
+	src/HydrothermalVentingLine.cc \
+	src/CrossMap.h \
+	src/CrossMap.cc
 
 
 test_utils=\
@@ -22,7 +27,21 @@ test_HydrothermalVentingLine_SOURCES=\
 	src/FileBaseParser.cc \
 	src/HydrothermalVentingFileParser.h \
 	src/HydrothermalVentingFileParser.cc \
+	src/HydrothermalVentingLine.h \
+	src/HydrothermalVentingLine.cc \
 	test/test_HydrothermalVentingLine.cc \
+	$(test_utils)
+
+test_CrossMap_SOURCES=\
+	src/FileBaseParser.h \
+	src/FileBaseParser.cc \
+	src/HydrothermalVentingFileParser.h \
+	src/HydrothermalVentingFileParser.cc \
+	src/HydrothermalVentingLine.h \
+	src/HydrothermalVentingLine.cc \
+	src/CrossMap.h \
+	src/CrossMap.cc \
+	test/test_CrossMap.cc \
 	$(test_utils)
 	
 AM_CPPFLAGS = -I$(top_srcdir)/src \

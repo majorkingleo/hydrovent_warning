@@ -9,6 +9,7 @@
 #define SRC_HYDROTHERMALVENTINGFILEPARSER_H_
 
 #include "FileBaseParser.h"
+#include "HydrothermalVentingLine.h"
 #include <regex>
 #include <variant>
 #include <sstream>
@@ -75,35 +76,10 @@ public:
 
 		return OBJECT( groups );
 	}
-};
 
-class HydrothermalVentingLine
-{
-	class Point
-	{
-	public:
-		unsigned long x;
-		unsigned long y;
-	};
-
-	Point start;
-	Point end;
-
-public:
-	HydrothermalVentingLine( std::vector<std::string> & matches )
-	: start( { std::stoul( matches[0] ),
-			   std::stoul( matches[1] ) } ),
-	  end (  { std::stoul( matches[2] ),
-			   std::stoul( matches[3] ) } )
-	{}
-
-	/**
-	 * tests if this a valid line
-	 *   - horizantal
-	 *   - vertical
-	 *   - 45° lines and any multiples of 45° are allowed
-	 */
-	bool isValid() const;
+	auto getCurrentLineNumber() const {
+		return current_line_number;
+	}
 };
 
 class HydrothermalVentingFileParser : public RegexBasedFileParser<HydrothermalVentingLine>

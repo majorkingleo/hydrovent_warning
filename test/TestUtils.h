@@ -10,16 +10,16 @@
 
 #include <string>
 
-class TestCaseBase
+template<class RESULT> class TestCaseBase
 {
 protected:
     std::string name;
     bool throws_exception;
-    const bool expected_result;
+    const RESULT expected_result;
 
 public:
     TestCaseBase( const std::string & name_,
-    			  bool expected_result_ = true,
+    			  const RESULT & expected_result_,
     			  bool throws_exception_ = false )
     : name( name_ ),
       throws_exception( throws_exception_ ),
@@ -28,7 +28,7 @@ public:
 
     virtual ~TestCaseBase() {}
 
-    virtual bool run() = 0;
+    virtual RESULT run() = 0;
 
     const std::string & getName() const {
         return name;
@@ -38,7 +38,7 @@ public:
         return throws_exception;
     }
 
-    bool getExpectedResult() const {
+    RESULT getExpectedResult() const {
     	return expected_result;
     }
 };
