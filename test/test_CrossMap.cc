@@ -65,12 +65,139 @@ R"(1
 )" );
 }
 
+std::shared_ptr<TestCaseSimple> createTestCase2()
+{
+	std::vector<HydrothermalVentingLine> lines = {
+		HydrothermalVentingLine( 0,0, 5,0 )
+	};
+
+	return std::make_shared<TestCaseSimple>( lines,
+			"horizontal 5",
+			"111111\n");
+}
+
+std::shared_ptr<TestCaseSimple> createTestCase3()
+{
+	std::vector<HydrothermalVentingLine> lines = {
+		HydrothermalVentingLine( 5,0, 5,5 )
+	};
+
+	return std::make_shared<TestCaseSimple>( lines,
+			"vertical 5",
+R"(.....1
+.....1
+.....1
+.....1
+.....1
+.....1
+)" );
+}
+
+std::shared_ptr<TestCaseSimple> createTestCase4()
+{
+	std::vector<HydrothermalVentingLine> lines = {
+		HydrothermalVentingLine( 5,0, 5,5 ),
+		HydrothermalVentingLine( 0,0, 0,5 )
+	};
+
+	return std::make_shared<TestCaseSimple>( lines,
+			"vertical 5",
+R"(1....1
+1....1
+1....1
+1....1
+1....1
+1....1
+)" );
+}
+
+std::shared_ptr<TestCaseSimple> createTestCase5()
+{
+	std::vector<HydrothermalVentingLine> lines = {
+		HydrothermalVentingLine( 5,0, 5,5 ),
+		HydrothermalVentingLine( 5,0, 5,2 ),
+		HydrothermalVentingLine( 0,0, 0,5 )
+	};
+
+	return std::make_shared<TestCaseSimple>( lines,
+			"vertical 5",
+R"(1....2
+1....2
+1....2
+1....1
+1....1
+1....1
+)" );
+}
+
+
+std::shared_ptr<TestCaseSimple> createTestCase6()
+{
+	std::vector<HydrothermalVentingLine> lines = {
+		HydrothermalVentingLine( 0,0, 5,5 ),
+	};
+
+	return std::make_shared<TestCaseSimple>( lines,
+			"diagonal 5",
+R"(1.....
+.1....
+..1...
+...1..
+....1.
+.....1
+)" );
+}
+
+std::shared_ptr<TestCaseSimple> createTestCase7()
+{
+	std::vector<HydrothermalVentingLine> lines = {
+		HydrothermalVentingLine( 0,5, 5,0 ),
+	};
+
+	return std::make_shared<TestCaseSimple>( lines,
+			"diagonal 5",
+R"(.....1
+....1.
+...1..
+..1...
+.1....
+1.....
+)" );
+}
+
+
+std::shared_ptr<TestCaseSimple> createTestCase8()
+{
+	std::vector<HydrothermalVentingLine> lines = {
+		HydrothermalVentingLine( 5,0, 0,5 ),
+	};
+
+	return std::make_shared<TestCaseSimple>( lines,
+			"diagonal 5",
+R"(.....1
+....1.
+...1..
+..1...
+.1....
+1.....
+)" );
+}
+
+
 int main()
 {
 	try {
 
 		std::vector<std::shared_ptr<TestCaseBase<std::string>>> test_cases;
+
 		test_cases.push_back( createTestCase1() );
+		test_cases.push_back( createTestCase2() );
+		test_cases.push_back( createTestCase3() );
+		test_cases.push_back( createTestCase4() );
+		test_cases.push_back( createTestCase5() );
+		test_cases.push_back( createTestCase6() );
+		test_cases.push_back( createTestCase7() );
+		test_cases.push_back( createTestCase8() );
 
 		ColoredOutput co;
 		unsigned idx = 0;
@@ -95,6 +222,8 @@ int main()
 				result = test->run();
 
 			} catch( const std::exception & error ) {
+				std::cout << co.color_output( ColoredOutput::RED, std::string("Exception: ") + error.what() )
+						  << std::endl;
 				result = "exception";
 			} catch( ... ) {
 				result = "exception";
@@ -127,3 +256,4 @@ int main()
 
 
 #endif /* TEST_TEST_HYDROTHERMALVENTINGLINE_CC_ */
+

@@ -47,6 +47,10 @@ public:
 		return cross_map[idx];
 	}
 
+	auto & at( MAP_TYPE::size_type idx ) {
+		return cross_map.at(idx);
+	}
+
 private:
 	void expandMap( const HydrothermalVentingLine::Point & point ) {
 		expandMap( point.x, point.y );
