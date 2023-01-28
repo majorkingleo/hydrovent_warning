@@ -18,12 +18,12 @@
 
 using Point = HydrothermalVentingLine::Point;
 
-class TestCaseSimple : public TestCaseBase<std::string>
+class TestCaseMap : public TestCaseBase<std::string>
 {
 	std::vector<HydrothermalVentingLine> lines;
 
 public:
-	TestCaseSimple( const std::vector<HydrothermalVentingLine> & lines,
+	TestCaseMap( const std::vector<HydrothermalVentingLine> & lines,
 					const std::string & name,
 					const std::string & expected_result,
 					bool throws_exception = false )
@@ -44,18 +44,44 @@ public:
 
     	return ss.str();
     }
-
-
-
 };
 
-std::shared_ptr<TestCaseSimple> createTestCase1()
+class TestCaseDangerousPoints : public TestCaseBase<std::string>
+{
+	std::vector<HydrothermalVentingLine> lines;
+
+public:
+	TestCaseDangerousPoints( const std::vector<HydrothermalVentingLine> & lines,
+					const std::string & name,
+					const std::string & expected_result,
+					bool throws_exception = false )
+    : TestCaseBase( name, expected_result, false ),
+      lines(lines)
+    {}
+
+    virtual std::string run() override
+    {
+    	CrossMap cross_map;
+
+    	for( auto & line : lines ) {
+    		cross_map.addLine( line );
+    	}
+
+    	std::stringstream ss;
+    	ss << cross_map.getDangerousPoints();
+
+    	return ss.str();
+    }
+};
+
+
+std::shared_ptr<TestCaseMap> createTestCase1()
 {
 	std::vector<HydrothermalVentingLine> lines = {
 		HydrothermalVentingLine( 0,0, 0,5 )
 	};
 
-	return std::make_shared<TestCaseSimple>( lines,
+	return std::make_shared<TestCaseMap>( lines,
 			"vertical 5,0",
 R"(1
 1
@@ -66,24 +92,24 @@ R"(1
 )" );
 }
 
-std::shared_ptr<TestCaseSimple> createTestCase2()
+std::shared_ptr<TestCaseMap> createTestCase2()
 {
 	std::vector<HydrothermalVentingLine> lines = {
 		HydrothermalVentingLine( 0,0, 5,0 )
 	};
 
-	return std::make_shared<TestCaseSimple>( lines,
+	return std::make_shared<TestCaseMap>( lines,
 			"horizontal 0,5",
 			"111111\n");
 }
 
-std::shared_ptr<TestCaseSimple> createTestCase3()
+std::shared_ptr<TestCaseMap> createTestCase3()
 {
 	std::vector<HydrothermalVentingLine> lines = {
 		HydrothermalVentingLine( 5,0, 5,5 )
 	};
 
-	return std::make_shared<TestCaseSimple>( lines,
+	return std::make_shared<TestCaseMap>( lines,
 			"vertical 0,5",
 R"(.....1
 .....1
@@ -94,14 +120,14 @@ R"(.....1
 )" );
 }
 
-std::shared_ptr<TestCaseSimple> createTestCase4()
+std::shared_ptr<TestCaseMap> createTestCase4()
 {
 	std::vector<HydrothermalVentingLine> lines = {
 		HydrothermalVentingLine( 5,0, 5,5 ),
 		HydrothermalVentingLine( 0,0, 0,5 )
 	};
 
-	return std::make_shared<TestCaseSimple>( lines,
+	return std::make_shared<TestCaseMap>( lines,
 			"vertical 0,0 and 0,5",
 R"(1....1
 1....1
@@ -112,7 +138,7 @@ R"(1....1
 )" );
 }
 
-std::shared_ptr<TestCaseSimple> createTestCase5()
+std::shared_ptr<TestCaseMap> createTestCase5()
 {
 	std::vector<HydrothermalVentingLine> lines = {
 		HydrothermalVentingLine( 5,0, 5,5 ),
@@ -120,7 +146,7 @@ std::shared_ptr<TestCaseSimple> createTestCase5()
 		HydrothermalVentingLine( 0,0, 0,5 )
 	};
 
-	return std::make_shared<TestCaseSimple>( lines,
+	return std::make_shared<TestCaseMap>( lines,
 			"vertical 3 lines",
 R"(1....2
 1....2
@@ -132,13 +158,13 @@ R"(1....2
 }
 
 
-std::shared_ptr<TestCaseSimple> createTestCase6()
+std::shared_ptr<TestCaseMap> createTestCase6()
 {
 	std::vector<HydrothermalVentingLine> lines = {
 		HydrothermalVentingLine( 0,0, 5,5 ),
 	};
 
-	return std::make_shared<TestCaseSimple>( lines,
+	return std::make_shared<TestCaseMap>( lines,
 			"diagonal 0,0",
 R"(1.....
 .1....
@@ -149,13 +175,13 @@ R"(1.....
 )" );
 }
 
-std::shared_ptr<TestCaseSimple> createTestCase7()
+std::shared_ptr<TestCaseMap> createTestCase7()
 {
 	std::vector<HydrothermalVentingLine> lines = {
 		HydrothermalVentingLine( 0,5, 5,0 ),
 	};
 
-	return std::make_shared<TestCaseSimple>( lines,
+	return std::make_shared<TestCaseMap>( lines,
 			"diagonal 0,5",
 R"(.....1
 ....1.
@@ -167,13 +193,13 @@ R"(.....1
 }
 
 
-std::shared_ptr<TestCaseSimple> createTestCase8()
+std::shared_ptr<TestCaseMap> createTestCase8()
 {
 	std::vector<HydrothermalVentingLine> lines = {
 		HydrothermalVentingLine( 5,0, 0,5 ),
 	};
 
-	return std::make_shared<TestCaseSimple>( lines,
+	return std::make_shared<TestCaseMap>( lines,
 			"diagonal 0,5 reverse",
 R"(.....1
 ....1.
@@ -184,7 +210,7 @@ R"(.....1
 )" );
 }
 
-std::shared_ptr<TestCaseSimple> createTestCase9()
+std::shared_ptr<TestCaseMap> createTestCase9()
 {
 	// all lines from the example without the last one which is invalid
 	std::vector<HydrothermalVentingLine> lines = {
@@ -200,7 +226,7 @@ std::shared_ptr<TestCaseSimple> createTestCase9()
 			HydrothermalVentingLine( 5,5, 8,2 ),
 	};
 
-	return std::make_shared<TestCaseSimple>( lines,
+	return std::make_shared<TestCaseMap>( lines,
 			"example",
 R"(1.1....11.
 .111...2..
@@ -215,6 +241,40 @@ R"(1.1....11.
 )" );
 }
 
+
+
+std::shared_ptr<TestCaseDangerousPoints> createTestCase10()
+{
+	// all lines from the example without the last one which is invalid
+	std::vector<HydrothermalVentingLine> lines = {
+			HydrothermalVentingLine( 0,9, 5,9 ),
+			HydrothermalVentingLine( 8,0, 0,8 ),
+			HydrothermalVentingLine( 9,4, 3,4 ),
+			HydrothermalVentingLine( 2,2, 2,1 ),
+			HydrothermalVentingLine( 7,0, 7,4 ),
+			HydrothermalVentingLine( 6,4, 2,0 ),
+			HydrothermalVentingLine( 0,9, 2,9 ),
+			HydrothermalVentingLine( 3,4, 1,4 ),
+			HydrothermalVentingLine( 0,0, 8,8 ),
+			HydrothermalVentingLine( 5,5, 8,2 ),
+	};
+
+	return std::make_shared<TestCaseDangerousPoints>( lines,
+			"example dangerous points",
+R"((0, 9) -> 2
+(1, 9) -> 2
+(2, 2) -> 2
+(2, 9) -> 2
+(3, 4) -> 2
+(4, 4) -> 3
+(5, 3) -> 2
+(5, 5) -> 2
+(6, 4) -> 3
+(7, 1) -> 2
+(7, 3) -> 2
+(7, 4) -> 2
+)" );
+}
 
 int main()
 {
@@ -231,6 +291,7 @@ int main()
 		test_cases.push_back( createTestCase7() );
 		test_cases.push_back( createTestCase8() );
 		test_cases.push_back( createTestCase9() );
+		test_cases.push_back( createTestCase10() );
 
 		ColoredOutput co;
 		ColBuilder col;

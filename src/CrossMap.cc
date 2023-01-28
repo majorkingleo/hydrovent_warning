@@ -80,7 +80,27 @@ void CrossMap::expandMap( unsigned long x, unsigned long y )
 	}
 }
 
-std::ostream & operator<<( std::ostream & out, CrossMap & cross_map )
+std::vector<CrossMap::DangerousPoint> CrossMap::getDangerousPoints() const
+{
+	auto width = getWidth();
+	auto height = getHeight();
+
+	std::vector<DangerousPoint> dangerous_points;
+
+	for( MAP_TYPE::size_type x = 0; x < width; x++ ) {
+		for( MAP_TYPE::size_type y = 0; y < height; y++ ) {
+
+			auto number_of_dangerous_lines = cross_map.at(x).at(y);
+			if( number_of_dangerous_lines >= 2 ) {
+				dangerous_points.push_back( DangerousPoint( x, y, number_of_dangerous_lines ) );
+			}
+		}
+	}
+
+	return dangerous_points;
+}
+
+std::ostream & operator<<( std::ostream & out, const CrossMap & cross_map )
 {
 	auto width = cross_map.getWidth();
 	auto height = cross_map.getHeight();
@@ -94,6 +114,20 @@ std::ostream & operator<<( std::ostream & out, CrossMap & cross_map )
 			}
 		}
 		out << '\n';
+	}
+
+	return out;
+}
+
+std::ostream & operator<<( std::ostream & out, const CrossMap::DangerousPoint & point )
+{
+	return out << "(" << point.x << ", " << point.y << ") -> " << point.number_of_crossing_venting_lines;
+}
+
+std::ostream & operator<<( std::ostream & out, const std::vector<CrossMap::DangerousPoint> & points )
+{
+	for( auto & point : points ) {
+		out << point << '\n';
 	}
 
 	return out;

@@ -15,6 +15,26 @@
 
 class CrossMap
 {
+public:
+	class DangerousPoint : public HydrothermalVentingLine::Point
+	{
+	public:
+		unsigned long number_of_crossing_venting_lines;
+
+	public:
+		DangerousPoint()
+		: HydrothermalVentingLine::Point( {0,0} ),
+		  number_of_crossing_venting_lines(0)
+		{}
+
+		DangerousPoint( unsigned long x,
+						unsigned long y,
+						unsigned long number_of_crossing_venting_lines )
+		: HydrothermalVentingLine::Point( {x, y } ),
+		  number_of_crossing_venting_lines( number_of_crossing_venting_lines )
+		{}
+	};
+
 private:
 	// map x,y,n
 	//     n: number of lines, crossing this point
@@ -47,9 +67,15 @@ public:
 		return cross_map[idx];
 	}
 
+	const auto & operator[]( MAP_TYPE::size_type idx ) const {
+		return cross_map[idx];
+	}
+
 	auto & at( MAP_TYPE::size_type idx ) {
 		return cross_map.at(idx);
 	}
+
+	std::vector<DangerousPoint> getDangerousPoints() const;
 
 private:
 	void expandMap( const HydrothermalVentingLine::Point & point ) {
@@ -58,6 +84,7 @@ private:
 	void expandMap( unsigned long x, unsigned long y );
 };
 
-std::ostream & operator<<( std::ostream & out, CrossMap & cross_map );
-
+std::ostream & operator<<( std::ostream & out, const CrossMap & cross_map );
+std::ostream & operator<<( std::ostream & out, const CrossMap::DangerousPoint & point );
+std::ostream & operator<<( std::ostream & out, const std::vector<CrossMap::DangerousPoint> & points );
 #endif /* SRC_CROSSMAP_H_ */
