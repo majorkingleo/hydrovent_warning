@@ -88,7 +88,7 @@ public:
 	HydrothermalVentingFileParser( const std::string & file_name )
 	: RegexBasedFileParser<HydrothermalVentingLine>( file_name,
 			// expected format: 318,513 -> 404,513
-			 R"regex(([0-9]+),([0-9]+)\s*->\s*([0-9]+),([0-9]+)\s*)regex" )
+			 R"regex(([0-9]+)\s*,\s*([0-9]+)\s*->\s*([0-9]+)\s*,\s*([0-9]+)\s*)regex" )
 	{}
 
 };

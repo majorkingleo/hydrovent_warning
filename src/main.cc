@@ -115,6 +115,8 @@ int main( int argc, char *const *argv )
 	} catch( const std::exception & error ) {
 		std::cerr << "Error: " << error.what() << std::endl;
 	}
+
+	return 0;
 }
 
 
