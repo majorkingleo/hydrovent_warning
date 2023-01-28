@@ -184,6 +184,38 @@ R"(.....1
 }
 
 
+std::shared_ptr<TestCaseSimple> createTestCase9()
+{
+	// all lines from the example without the last one which is invalid
+	std::vector<HydrothermalVentingLine> lines = {
+			HydrothermalVentingLine( 0,9, 5,9 ),
+			HydrothermalVentingLine( 8,0, 0,8 ),
+			HydrothermalVentingLine( 9,4, 3,4 ),
+			HydrothermalVentingLine( 2,2, 2,1 ),
+			HydrothermalVentingLine( 7,0, 7,4 ),
+			HydrothermalVentingLine( 6,4, 2,0 ),
+			HydrothermalVentingLine( 0,9, 2,9 ),
+			HydrothermalVentingLine( 3,4, 1,4 ),
+			HydrothermalVentingLine( 0,0, 8,8 ),
+			HydrothermalVentingLine( 5,5, 8,2 ),
+	};
+
+	return std::make_shared<TestCaseSimple>( lines,
+			"exmaple",
+R"(1.1....11.
+.111...2..
+..2.1.111.
+...1.2.2..
+.112313211
+...1.2....
+..1...1...
+.1.....1..
+1.......1.
+222111....
+)" );
+}
+
+
 int main()
 {
 	try {
@@ -198,6 +230,7 @@ int main()
 		test_cases.push_back( createTestCase6() );
 		test_cases.push_back( createTestCase7() );
 		test_cases.push_back( createTestCase8() );
+		test_cases.push_back( createTestCase9() );
 
 		ColoredOutput co;
 		unsigned idx = 0;
