@@ -11,6 +11,7 @@
 #include <CrossMap.h>
 #include "TestUtils.h"
 #include "ColoredOutput.h"
+#include "ColBuilder.h"
 #include <iostream>
 #include <memory>
 #include <sstream>
@@ -55,7 +56,7 @@ std::shared_ptr<TestCaseSimple> createTestCase1()
 	};
 
 	return std::make_shared<TestCaseSimple>( lines,
-			"vertical 5",
+			"vertical 5,0",
 R"(1
 1
 1
@@ -72,7 +73,7 @@ std::shared_ptr<TestCaseSimple> createTestCase2()
 	};
 
 	return std::make_shared<TestCaseSimple>( lines,
-			"horizontal 5",
+			"horizontal 0,5",
 			"111111\n");
 }
 
@@ -83,7 +84,7 @@ std::shared_ptr<TestCaseSimple> createTestCase3()
 	};
 
 	return std::make_shared<TestCaseSimple>( lines,
-			"vertical 5",
+			"vertical 0,5",
 R"(.....1
 .....1
 .....1
@@ -101,7 +102,7 @@ std::shared_ptr<TestCaseSimple> createTestCase4()
 	};
 
 	return std::make_shared<TestCaseSimple>( lines,
-			"vertical 5",
+			"vertical 0,0 and 0,5",
 R"(1....1
 1....1
 1....1
@@ -120,7 +121,7 @@ std::shared_ptr<TestCaseSimple> createTestCase5()
 	};
 
 	return std::make_shared<TestCaseSimple>( lines,
-			"vertical 5",
+			"vertical 3 lines",
 R"(1....2
 1....2
 1....2
@@ -138,7 +139,7 @@ std::shared_ptr<TestCaseSimple> createTestCase6()
 	};
 
 	return std::make_shared<TestCaseSimple>( lines,
-			"diagonal 5",
+			"diagonal 0,0",
 R"(1.....
 .1....
 ..1...
@@ -155,7 +156,7 @@ std::shared_ptr<TestCaseSimple> createTestCase7()
 	};
 
 	return std::make_shared<TestCaseSimple>( lines,
-			"diagonal 5",
+			"diagonal 0,5",
 R"(.....1
 ....1.
 ...1..
@@ -173,7 +174,7 @@ std::shared_ptr<TestCaseSimple> createTestCase8()
 	};
 
 	return std::make_shared<TestCaseSimple>( lines,
-			"diagonal 5",
+			"diagonal 0,5 reverse",
 R"(.....1
 ....1.
 ...1..
@@ -182,7 +183,6 @@ R"(.....1
 1.....
 )" );
 }
-
 
 std::shared_ptr<TestCaseSimple> createTestCase9()
 {
@@ -201,7 +201,7 @@ std::shared_ptr<TestCaseSimple> createTestCase9()
 	};
 
 	return std::make_shared<TestCaseSimple>( lines,
-			"exmaple",
+			"example",
 R"(1.1....11.
 .111...2..
 ..2.1.111.
@@ -233,11 +233,19 @@ int main()
 		test_cases.push_back( createTestCase9() );
 
 		ColoredOutput co;
+		ColBuilder col;
 		unsigned idx = 0;
+
+		const int COL_IDX       = col.addCol( "Idx" );
+		const int COL_NAME      = col.addCol( "Test" );
+		const int COL_TEST_RES  = col.addCol( "Test Result" );
 
 		for( auto & test : test_cases ) {
 
 			idx++;
+
+			col.addColData( COL_IDX, std::to_string(idx) );
+			col.addColData( COL_NAME, test->getName() );
 
 			std::cout << " ### " << idx << " ============ Test: " << test->getName() << " ==============\n";
 
@@ -268,6 +276,8 @@ int main()
 				test_result = co.color_output( ColoredOutput::GREEN, "succeeded" );
 			}
 
+			col.addColData( COL_TEST_RES, test_result );
+
 			std::cout << "Result:\n----------------\n" << result
 					  << "\n^^^^^^^^^^^^^^^^^^^\n";
 			std::cout << "Expedted Result:\n----------------\n" << expected_result
@@ -277,7 +287,9 @@ int main()
 					  << "\n\n";
 		}
 
-
+		std::cout << "\n\n"
+				  << "Summary:\n"
+				  << col.toString() << std::endl;
 
 	} catch( std::exception & error ) {
 		std::cout << error.what() << std::endl;
