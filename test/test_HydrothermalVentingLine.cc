@@ -69,9 +69,9 @@ int main()
 	try {
 
 		std::vector<std::shared_ptr<TestCaseBase<bool>>> test_cases;
-		test_cases.push_back( std::make_shared<TestCaseSimple>("1", "1", "2", "2", "simple 45°", true, false ) );
-		test_cases.push_back( std::make_shared<TestCaseSimple>("2", "2", "1", "1", "reverse simple 45°", true, false ) );
-		test_cases.push_back( std::make_shared<TestCaseSimple>("20", "2", "1", "1","invalid 45°", false, false ) );
+		test_cases.push_back( std::make_shared<TestCaseSimple>("1", "1", "2", "2", "simple 45 Degrees", true, false ) );
+		test_cases.push_back( std::make_shared<TestCaseSimple>("2", "2", "1", "1", "reverse simple 45 Degrees", true, false ) );
+		test_cases.push_back( std::make_shared<TestCaseSimple>("20", "2", "1", "1","invalid 45 Degrees", false, false ) );
 
 		test_cases.push_back( std::make_shared<TestCaseSimple>("2", "2", "1", "2","horizontal", true, false ) );
 		test_cases.push_back( std::make_shared<TestCaseSimple>("5", "4", "5", "2","vertical", true, false ) );

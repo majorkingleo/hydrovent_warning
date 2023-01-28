@@ -2,17 +2,42 @@
 #include <stdlib.h>
 #include <iostream>
 #include <stdio.h>
-#include <unistd.h>
 #include "ColoredOutput.h"
+#ifdef _WIN32
+#	include <windows.h>
+#else
+#	include <unistd.h>
+#endif
 
 ColoredOutput::ColoredOutput()
 : colored_output( true )
 {
-	char *pcTerm =  getenv( "TERM");
+#ifdef _WIN32
+	// Set output mode to handle virtual terminal sequences
+	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	if (hOut == INVALID_HANDLE_VALUE)
+	{
+		return;// GetLastError();
+	}
 
+	DWORD dwMode = 0;
+	if (!GetConsoleMode(hOut, &dwMode))
+	{
+		return;// GetLastError();
+	}
+
+	dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+	if (!SetConsoleMode(hOut, dwMode))
+	{
+		return;// GetLastError();
+	}
+#else
+	char *pcTerm =  getenv( "TERM");
+	
 	if( pcTerm == NULL || !isatty(fileno(stdout)) ) {
 		colored_output = false;
 	}
+#endif
 }
 
 std::string ColoredOutput::color_output( Color color, const std::string & text ) const
