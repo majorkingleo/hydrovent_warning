@@ -86,7 +86,7 @@ std::string GetOutputFileFromUser::ask()
 
 bool GetOutputFileFromUser::isValid( const std::string & answer )
 {
-	std::fstream out( answer.c_str() );
+	std::fstream out( answer.c_str(), std::ios_base::out );
 
 	if( !out ) {
 		std::cout << "Cannot write to file '" << answer << "' please try it again!\n";
