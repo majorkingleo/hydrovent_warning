@@ -9,6 +9,11 @@
 
 bool HydrothermalVentingLine::isValid() const
 {
+	// it is a point
+	if( start == end ) {
+		return false;
+	}
+
 	// vertical
 	if( start.x == end.x ) {
 		return true;

@@ -44,6 +44,16 @@ public:
 
 			return false;
 		}
+
+		bool operator==( const Point & other ) const {
+
+			if( x == other.x &&
+				y == other.y ) {
+				return true;
+			}
+
+			return false;
+		}
 	};
 
 	Point start;
