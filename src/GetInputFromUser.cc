@@ -7,6 +7,7 @@
 #include "GetInputFromUser.h"
 #include <iostream>
 #include <filesystem>
+#include <fstream>
 
 std::string GetInputFromUser::ask()
 {
@@ -26,7 +27,7 @@ std::string GetInputFromUser::ask()
 
 std::string GetInputFileFromUser::ask()
 {
-	if( isValid( argv_value )  ) {
+	if( !argv_value.empty() && isValid( argv_value )  ) {
 		return argv_value;
 	}
 
@@ -46,15 +47,51 @@ bool GetInputFileFromUser::isValid( const std::string & answer )
 	return false;
 }
 
+std::string GetYesNoFromUser::ask()
+{
+	std::string text = GetInputFromUser::ask();
+
+	if( text.find('Y') == 0 ||
+		text.find('y') == 0 ) {
+		return text;
+	}
+
+	return std::string();
+}
+
 bool GetYesNoFromUser::isValid( const std::string & answer )
 {
 	std::string text = answer;
 	text.resize(1);
 
 	if( text == "Y" ||
-		text == "y" ) {
+		text == "y" ||
+		text == "N" ||
+		text == "n" ) {
 		return true;
 	}
 
 	return false;
+}
+
+
+std::string GetOutputFileFromUser::ask()
+{
+	if( !argv_value.empty() && isValid( argv_value )  ) {
+		return argv_value;
+	}
+
+	return GetInputFromUser::ask();
+}
+
+bool GetOutputFileFromUser::isValid( const std::string & answer )
+{
+	std::fstream out( answer.c_str() );
+
+	if( !out ) {
+		std::cout << "Cannot write to file '" << answer << "' please try it again!\n";
+		return false;
+	}
+
+	return true;
 }

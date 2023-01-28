@@ -29,7 +29,7 @@ void ProgressInfo::paintAll() {
 void ProgressInfo::paintNext() {
 	unsigned progress_to_paint = (progress * width) / 100.0;
 
-	for( unsigned i = last_progress_painted; i <= progress_to_paint; i++ ) {
+	for( unsigned i = last_progress_painted; i < progress_to_paint; i++ ) {
 		std::cout << "#" << std::flush;
 	}
 

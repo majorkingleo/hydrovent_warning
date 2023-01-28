@@ -71,15 +71,46 @@ int main( int argc, char *const *argv )
 		}
 
 		pi.paint();
-		std::cout << "\n";
+		std::cout << "\n\n";
 
-		std::cout << map << std::endl;
+		if( map.getWidth() > 200 ||
+			map.getHeight() > 200 ) {
+
+			std::string question =
+					"Display map (Size: " + std::to_string( map.getWidth() )
+					+ "x"
+					+ std::to_string( map.getHeight() );
+
+			GetYesNoFromUser display_map( question );
+
+			if( !display_map.ask().empty() ) {
+				std::cout << map << std::endl;
+			}
+		} else {
+			std::cout << map << std::endl;
+		}
 
 		auto dangerous_points = map.getDangerousPoints();
 
 		std::cout << "Number of dangerous Points: " << dangerous_points.size() << "\n";
 		std::cout << "\n"
 				  << dangerous_points;
+
+		GetYesNoFromUser write_output( "Do you wan't to save dangerous points to a file?" );
+
+		if( argc > 2 || !write_output.ask().empty() ) {
+			GetOutputFileFromUser output_file_name( "Please enter a file name to save dangerous points", argc > 2 ? argv[2] : "" );
+
+			std::string file_name = output_file_name.ask();
+
+			std::ofstream out( file_name.c_str(), std::ios_base::trunc );
+			out << "Number of dangerous Points: " << dangerous_points.size() << "\n";
+			out << "\n";
+			out << dangerous_points;
+
+			std::cout << "\nDangerous points written to: " << file_name << std::endl;
+		}
+
 
 	} catch( const std::exception & error ) {
 		std::cerr << "Error: " << error.what() << std::endl;

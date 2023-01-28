@@ -52,11 +52,28 @@ public:
 	: GetInputFromUser( question_ + "(Y/N)" )
 	{}
 
+	// returns an empty string in case of a "no"
 	std::string ask();
 
 protected:
 	bool isValid( const std::string & answer ) override;
 };
 
+
+class GetOutputFileFromUser : public GetInputFromUser
+{
+	const std::string argv_value;
+
+public:
+	GetOutputFileFromUser( const std::string & question, const std::string & argv_value = "" )
+	: GetInputFromUser( question ),
+	  argv_value( argv_value )
+	{}
+
+	std::string ask() override;
+
+protected:
+	bool isValid( const std::string & answer ) override;
+};
 
 #endif /* SRC_GETINPUTFROMUSER_H_ */
