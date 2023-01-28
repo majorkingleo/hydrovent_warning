@@ -6,6 +6,7 @@
  */
 #include "FileBaseParser.h"
 #include <filesystem>
+#include <iostream>
 
 bool FileBaseParser::open()
 {
@@ -26,6 +27,10 @@ void FileBaseParser::calculateProgress()
 {
 	auto pos = file.tellg();
 
-	progress = pos * 100.0 / file_size;
+	if( file.eof() ) {
+		progress = 100;
+	} else {
+		progress = pos * 100.0 / file_size;
+	}
 }
 

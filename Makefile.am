@@ -12,7 +12,11 @@ hydrovent_warning_SOURCES=\
 	src/HydrothermalVentingLine.h \
 	src/HydrothermalVentingLine.cc \
 	src/CrossMap.h \
-	src/CrossMap.cc
+	src/CrossMap.cc \
+	src/GetInputFromUser.h \
+	src/GetInputFromUser.cc \
+	src/ProgressInfo.h \
+	src/ProgressInfo.cc
 
 
 test_utils=\

@@ -29,7 +29,8 @@ public:
 	bool open();
 
 	/* returns a number between 0 an 100 */
-	unsigned getPercetageProgress() const {
+	unsigned getPercetageProgress() {
+		calculateProgress();
 		return progress;
 	}
 
