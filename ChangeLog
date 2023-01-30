@@ -1,0 +1,169 @@
+commit 39ce7b199f31424dc6ce21f9be0b93787bda034f
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Mon Jan 30 19:54:10 2023 +0100
+
+    Added class doku
+
+commit 56bb5825765eee690ca87f9c654c03ed65659024
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Mon Jan 30 19:52:45 2023 +0100
+
+    Improved doku
+    
+    In case not running in a windows console disable colored output
+
+commit 9a77c8bdfbc8cdee2db31845809066c429e0a305
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Mon Jan 30 19:51:34 2023 +0100
+
+    Made some local function to class members
+
+commit 67d891855e1c0d352ff990a6b346855a24e1e8ca
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Mon Jan 30 19:50:02 2023 +0100
+
+    Added doku, adopted constructor to modify terminal width
+
+commit f9baa76869a8c0f2570f78792bb27e17d97869bf
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Mon Jan 30 19:48:52 2023 +0100
+
+    Fixed double check use case: the line is an invalid point
+
+commit 52991cb79dfe639ea1b76ea0d762d27d5ff39e23
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Mon Jan 30 19:47:34 2023 +0100
+
+    Add testdata and visual studio project data to distribution package
+
+commit 3f5a7dbdd1bfe561e96580245d267c334c24f1e0
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Mon Jan 30 18:14:14 2023 +0100
+
+    Added a example with more spaces in the input file
+
+commit a279aeea67711b52ed7f1f1bac067ee8c2ea1f97
+Author: Martin Oberzalek <76852670+majorkingleo@users.noreply.github.com>
+Date:   Mon Jan 30 18:10:42 2023 +0100
+
+    Update README.md
+
+commit 62a61153f583d7513059867d6eb2194ae2c04a83
+Author: Martin Oberzalek <76852670+majorkingleo@users.noreply.github.com>
+Date:   Mon Jan 30 18:09:07 2023 +0100
+
+    Update README.md
+
+commit 5fdabbec69c67e3f95cf1ae1ceaed561029d71e8
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Mon Jan 30 17:38:30 2023 +0100
+
+    github readme
+
+commit 0881370e174a38819dfa5ddfa5906721f93754c8
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Mon Jan 30 17:03:56 2023 +0100
+
+    Ignore generated data
+
+commit c4f4fdbace122173d0bb55ac1706fb87d420fa34
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Mon Jan 30 17:01:43 2023 +0100
+
+    Add VS Project data
+
+commit b4e78c0fcf58c927f368cf967e85868a7c670d32
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Mon Jan 30 17:00:12 2023 +0100
+
+    Prevent visual stio files from beeng damaged
+
+commit aa4e6ac6db5c09fa9fd38d6b101eaa1317e166d2
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Sat Jan 28 21:26:23 2023 +0100
+
+    Add colors for windows console
+
+commit 8310ff255b299c049892ae8baaad4ec97e88ce0d
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Sat Jan 28 20:44:35 2023 +0100
+
+    Fix for MSVC
+
+commit 572d835b33d63cf3ae39ce52a87cf1a5a6e04c77
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Sat Jan 28 18:27:47 2023 +0100
+
+    Allow more spaces in input files
+
+commit 28b42ea45bd88dc23f45f28410759c623f0c1ba6
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Sat Jan 28 18:15:19 2023 +0100
+
+    Added questions and file choosing
+
+commit 00ea5ef196307c73a950e5770dec26350e7247c6
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Sat Jan 28 17:25:43 2023 +0100
+
+    Add Progressbar and GetUserInput
+
+commit 2b79cbb9904749670e2fbe098fbc17d9890085e3
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Sat Jan 28 15:27:06 2023 +0100
+
+    Added testcase for dangerous points
+
+commit e7094244c0b000362dcb060fc792c5ae91f78622
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Sat Jan 28 15:20:27 2023 +0100
+
+    Fixed bug if line is a point
+
+commit 09526d0dd5be84bbd3dd7ae321956f693a934ab8
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Sat Jan 28 14:28:04 2023 +0100
+
+    Added Testcase summary
+
+commit 64d5184b4259c3a80ce6e21dd44bbb0c2ab25bf5
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Sat Jan 28 14:20:53 2023 +0100
+
+    Added doku
+
+commit af4541ff422672ca4896fd86ba28b07028ff593a
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Sat Jan 28 14:20:32 2023 +0100
+
+    Added testcase from example
+
+commit c5fd44e9a5dfeafeeda0f1e48551cb8568b63147
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Fri Jan 27 23:09:47 2023 +0100
+
+    More testcases, Bugfixes
+
+commit 778761d3ccd0a1f26e51486df2f98df187dc2e6e
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Fri Jan 27 22:17:38 2023 +0100
+
+    created cross map and first testcase
+
+commit dd8e6a77840dea9cd17ac3d6d323fa73f8914fce
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Fri Jan 27 00:34:17 2023 +0100
+
+    Verbesserungen tests
+
+commit 5cd27cc3390a22b74f75d612112b41e1bf89cca1
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Fri Jan 27 00:21:48 2023 +0100
+
+    Added some basic classes for wrinting tests
+
+commit ee8c38b6bd27f6d05d2f4b395bf450b01e42031f
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Thu Jan 26 23:02:18 2023 +0100
+
+    Initial commit.
