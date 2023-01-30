@@ -52,3 +52,8 @@ AM_CPPFLAGS = -I$(top_srcdir)/src \
 	-std=c++17	
 
 hydrovent_warning_LDADD = 
+
+EXTRA_DIST=testdata \
+	doc \
+	HydroVentWarning
+
