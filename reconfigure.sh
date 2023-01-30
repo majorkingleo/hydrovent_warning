@@ -2,7 +2,9 @@
 
 git log > ChangeLog
 touch NEWS
-touch README
+if ! test -f README ; then
+	cp README.md README
+fi
 
 aclocal
 automake --add-missing

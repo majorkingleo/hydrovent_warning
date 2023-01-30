@@ -44,7 +44,6 @@ Test programm for testing CrossMap class. No input required.
 # Directory structure
 
 * HydroVentWarning: Visual Studio project files
-* doc: requirements file
 * src: main source code
 * test: test classes source code
 * testdata: test data

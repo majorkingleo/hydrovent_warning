@@ -1,10 +1,28 @@
-commit 39ce7b199f31424dc6ce21f9be0b93787bda034f
+commit c42ae9614e5f5a8bc58c844c5829edbca58d1d9d
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Mon Jan 30 20:01:57 2023 +0100
+
+    Version 0.2
+
+commit 317a74337ac1457c47212bb2d3861b5a3bab3920
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Mon Jan 30 20:00:52 2023 +0100
+
+    Removed pdf not to have it in public space
+
+commit aa70750bd66a2747bfb6c663e9e72f133d955773
+Author: Martin Oberzalek <kingleo@gmx.at>
+Date:   Mon Jan 30 19:54:31 2023 +0100
+
+    Updated ChangeLog
+
+commit e77611184568ebe7e703b1c0a540f4033e4c9ce5
 Author: Martin Oberzalek <kingleo@gmx.at>
 Date:   Mon Jan 30 19:54:10 2023 +0100
 
     Added class doku
 
-commit 56bb5825765eee690ca87f9c654c03ed65659024
+commit f8da64d0c9a45a35de1674738d631e490dc99e85
 Author: Martin Oberzalek <kingleo@gmx.at>
 Date:   Mon Jan 30 19:52:45 2023 +0100
 
@@ -12,35 +30,47 @@ Date:   Mon Jan 30 19:52:45 2023 +0100
     
     In case not running in a windows console disable colored output
 
-commit 9a77c8bdfbc8cdee2db31845809066c429e0a305
+commit e3411d23b854d2af901d434150eb3b36c190c824
 Author: Martin Oberzalek <kingleo@gmx.at>
 Date:   Mon Jan 30 19:51:34 2023 +0100
 
     Made some local function to class members
 
-commit 67d891855e1c0d352ff990a6b346855a24e1e8ca
+commit f91ce58491ed69ab9250c73af4cdf564f0b5547c
 Author: Martin Oberzalek <kingleo@gmx.at>
 Date:   Mon Jan 30 19:50:02 2023 +0100
 
     Added doku, adopted constructor to modify terminal width
 
-commit f9baa76869a8c0f2570f78792bb27e17d97869bf
+commit 963c7c50a7e9134d5736b97af4aff22420c0773c
 Author: Martin Oberzalek <kingleo@gmx.at>
 Date:   Mon Jan 30 19:48:52 2023 +0100
 
     Fixed double check use case: the line is an invalid point
 
-commit 52991cb79dfe639ea1b76ea0d762d27d5ff39e23
+commit cd782ef4ff586ec86f7fd70b180a43315400d3ca
 Author: Martin Oberzalek <kingleo@gmx.at>
 Date:   Mon Jan 30 19:47:34 2023 +0100
 
     Add testdata and visual studio project data to distribution package
 
-commit 3f5a7dbdd1bfe561e96580245d267c334c24f1e0
+commit aaca6c16cf1c9bb21c3d19adab6128e45c313a9d
 Author: Martin Oberzalek <kingleo@gmx.at>
 Date:   Mon Jan 30 18:14:14 2023 +0100
 
     Added a example with more spaces in the input file
+
+commit 3616855de59791052e832a2fc48a32f8ca8f348f
+Author: Martin Oberzalek <76852670+majorkingleo@users.noreply.github.com>
+Date:   Mon Jan 30 18:24:17 2023 +0100
+
+    Update README.md
+
+commit b04616fe19a4cec2089d9084ba52b738deb3c6d6
+Author: Martin Oberzalek <76852670+majorkingleo@users.noreply.github.com>
+Date:   Mon Jan 30 18:21:30 2023 +0100
+
+    Update README.md
 
 commit a279aeea67711b52ed7f1f1bac067ee8c2ea1f97
 Author: Martin Oberzalek <76852670+majorkingleo@users.noreply.github.com>

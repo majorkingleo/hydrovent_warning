@@ -55,5 +55,6 @@ hydrovent_warning_LDADD =
 
 EXTRA_DIST=testdata \
 	doc \
-	HydroVentWarning
+	HydroVentWarning \
+	README.md
 
