@@ -2,7 +2,7 @@
  * test_CrossMap.cc
  *
  *  Created on: 27.01.2023
- *      Author: martin
+ *      Author: Martin Oberzalek <oberzalek@gmx.at>
  */
 
 #ifndef TEST_TEST_CROSSMAP_CC_

@@ -2,7 +2,7 @@
  * GetInputFromUser.cc
  *
  *  Created on: 28.01.2023
- *      Author: martin
+ *      Author: Martin Oberzalek <oberzalek@gmx.at>
  */
 #include "GetInputFromUser.h"
 #include <iostream>

@@ -2,7 +2,7 @@
  * HydrothermalVentingFileParser.h
  *
  *  Created on: 26.01.2023
- *      Author: martin
+ *      Author: Martin Oberzalek <oberzalek@gmx.at>
  */
 
 #ifndef SRC_HYDROTHERMALVENTINGFILEPARSER_H_
@@ -15,6 +15,17 @@
 #include <sstream>
 #include <algorithm>
 
+/*
+ * Regex based file parser
+ *
+ * On each matching line it allocates an OBJECT class
+ * The given OBJECT class has to implement following constructor:
+ *    OBJECT( const std::vector<std::string> & matching_groups )
+ *
+ * The regex has to define matching groups eg: ([0-9])([A-Z])
+ * every matching group value will be passed to the cunstructor via the
+ * matching_groups vector.
+ */
 template <class OBJECT> class RegexBasedFileParser : public FileBaseParser
 {
 public:
@@ -43,6 +54,12 @@ public:
 	  current_line_number(0)
 	{}
 
+	/*
+	 * Parses the next line and returns a std::variant of
+	 * - OBJECT     (on success)
+	 * - ParseError (on failure)
+	 * - EndOfFile  (if eof is reached)
+	 */
 	std::variant<OBJECT,ParseError,EndOfFile> parseNextLine()
 	{
 		std::string line;
@@ -50,7 +67,7 @@ public:
 		++current_line_number;
 
 		// remove the \r from DOS line endings
-		// only required on linux to create better error messages
+		// only required for Linux to create better error messages
 		if( !line.empty() && *line.rbegin() == '\r' ) {
 			line.resize(line.size()-1);
 		}
@@ -68,6 +85,10 @@ public:
 			return ParseError( { current_line_number, line, ss.str() } );
 		}
 
+		/* This part could be improved, by delegating the object creation
+		 * to a user defined lambda function
+		 */
+
 		std::vector<std::string> groups;
 		std::transform( ++matches.begin(),
 						matches.end(),
@@ -82,6 +103,11 @@ public:
 	}
 };
 
+/*
+ * expected format:        318,513 -> 404,513
+ * regex match groups: (318),(513) -> (404),(513)
+ *
+ */
 class HydrothermalVentingFileParser : public RegexBasedFileParser<HydrothermalVentingLine>
 {
 public:

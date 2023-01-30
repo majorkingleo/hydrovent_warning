@@ -2,7 +2,7 @@
  * GetInputFromUser.h
  *
  *  Created on: 28.01.2023
- *      Author: martin
+ *      Author: Martin Oberzalek <oberzalek@gmx.at>
  */
 
 #ifndef SRC_GETINPUTFROMUSER_H_
@@ -10,6 +10,12 @@
 
 #include <string>
 
+/*
+ * Base class for asking a question and getting an answer
+ * from user on command line, by simple using std::cin
+ *
+ * This could be improved by using gnu readline lib
+ */
 class GetInputFromUser
 {
 	std::string question;
@@ -19,6 +25,7 @@ public:
 	: question( question )
 	{}
 
+	/* start interaction and wait for input */
 	virtual std::string ask();
 
 protected:
@@ -27,6 +34,9 @@ protected:
 	}
 };
 
+/*
+ * Asks the user for a input file. The file has to exists.
+ */
 class GetInputFileFromUser : public GetInputFromUser
 {
 	const std::string argv_value;
@@ -43,6 +53,9 @@ protected:
 	bool isValid( const std::string & answer ) override;
 };
 
+/*
+ * Asks the user a yes/no question
+ */
 class GetYesNoFromUser : public GetInputFromUser
 {
 	std::string question;
@@ -60,6 +73,10 @@ protected:
 };
 
 
+/*
+ * Asks the user for a output file.
+ * Tests if the file can be opened for writing.
+ */
 class GetOutputFileFromUser : public GetInputFromUser
 {
 	const std::string argv_value;

@@ -2,7 +2,7 @@
  * CrossingMap.h
  *
  *  Created on: 27.01.2023
- *      Author: martin
+ *      Author: Martin Oberzalek <oberzalek@gmx.at>
  */
 
 #ifndef SRC_CROSSMAP_H_
@@ -13,6 +13,16 @@
 #include <vector>
 #include <ostream>
 
+/**
+ * CrossMap class
+ *
+ * The speed of this implementation could be better,
+ * but would also consume more memory.
+ *
+ * Other improvements would be possible if the
+ * maximum world coordinates are known.
+ *
+ */
 class CrossMap
 {
 public:
@@ -49,6 +59,9 @@ private:
 public:
 	CrossMap();
 
+	/* Adds a new HydrothermalVentingLine to the map.
+	 * The map will be automatically extended if required.
+	 */
 	void addLine( const HydrothermalVentingLine & line );
 
 	unsigned long getWidth() const {
@@ -84,7 +97,36 @@ private:
 	void expandMap( unsigned long x, unsigned long y );
 };
 
+/* Generates the map in ASCII style
+ * 1.1....11.
+ * .111...2..
+ * ..2.1.111.
+ * ...1.2.2..
+ * .112313211
+ * ...1.2....
+ * ..1...1...
+ * .1.....1..
+ * 1.......1.
+ * 222111....
+ */
 std::ostream & operator<<( std::ostream & out, const CrossMap & cross_map );
+
+/* converts one dangerous point to hydrothermal vent crossroad format
+ * eg: (5, 5) -> 2
+ */
 std::ostream & operator<<( std::ostream & out, const CrossMap::DangerousPoint & point );
+
+/*
+ * converts a vector of dangerous points to hydrothermal vent crossroad format without the header
+ *
+ * eg:
+ * (0, 9) -> 2
+ * (1, 9) -> 2
+ * (2, 2) -> 2
+ * (2, 9) -> 2
+ * (3, 4) -> 2
+ * (4, 4) -> 3
+ *
+ */
 std::ostream & operator<<( std::ostream & out, const std::vector<CrossMap::DangerousPoint> & points );
 #endif /* SRC_CROSSMAP_H_ */

@@ -2,7 +2,7 @@
  * HydrothermalVentingLine.h
  *
  *  Created on: 27.01.2023
- *      Author: martin
+ *      Author: Martin Oberzalek <oberzalek@gmx.at>
  */
 
 #ifndef SRC_HYDROTHERMALVENTINGLINE_H_
@@ -76,7 +76,7 @@ public:
 	{}
 
 	/**
-	 * tests if this a valid line
+	 * tests if this is a valid line
 	 *   - horizantal
 	 *   - vertical
 	 *   - 45° lines and any multiples of 45° are allowed
@@ -92,6 +92,7 @@ public:
 	}
 };
 
+/* converts one HydrothermalVentingLine to: 1,1 -> 2,2 */
 std::ostream & operator<<( std::ostream & out, const HydrothermalVentingLine & line );
 
 #endif /* SRC_HYDROTHERMALVENTINGLINE_H_ */

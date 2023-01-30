@@ -2,7 +2,7 @@
  * CrossingMap.cc
  *
  *  Created on: 27.01.2023
- *      Author: martin
+ *      Author: Martin Oberzalek <oberzalek@gmx.at>
  */
 #include "CrossMap.h"
 
@@ -86,6 +86,12 @@ std::vector<CrossMap::DangerousPoint> CrossMap::getDangerousPoints() const
 	auto height = getHeight();
 
 	std::vector<DangerousPoint> dangerous_points;
+
+	/* if we would have only one vector here (with known maximum coordinates)
+	 * we could use filters here
+	 *
+	 * or running parallel with openmp
+	 */
 
 	for( MAP_TYPE::size_type x = 0; x < width; x++ ) {
 		for( MAP_TYPE::size_type y = 0; y < height; y++ ) {

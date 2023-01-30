@@ -2,7 +2,7 @@
  * FileBaseParser.h
  *
  *  Created on: 26.01.2023
- *      Author: martin
+ *      Author: Martin Oberzalek <oberzalek@gmx.at>
  */
 
 #ifndef SRC_FILEBASEPARSER_H_
@@ -26,14 +26,19 @@ public:
 	  file()
 	{}
 
+	/* opens the file */
 	bool open();
 
-	/* returns a number between 0 an 100 */
+	/* returns a number between 0 an 100
+	 * assumes that the current file position reported by tellg()
+	 * is your current progress in file parsing.
+	 */
 	unsigned getPercetageProgress() {
 		calculateProgress();
 		return progress;
 	}
 
+	/* return true if end of file is reached */
 	bool eof() const {
 		return file.eof();
 	}

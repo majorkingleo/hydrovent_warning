@@ -2,7 +2,7 @@
  * ProgressInfo.cc
  *
  *  Created on: 28.01.2023
- *      Author: martin
+ *      Author: Martin Oberzalek <oberzalek@gmx.at>
  */
 
 #ifndef SRC_PROGRESSINFO_CC_

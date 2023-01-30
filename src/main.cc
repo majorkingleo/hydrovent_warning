@@ -2,7 +2,7 @@
  * main.cc
  *
  *  Created on: 26.01.2023
- *      Author: martin
+ *      Author: Martin Oberzalek <oberzalek@gmx.at>
  */
 #include "HydrothermalVentingFileParser.h"
 #include <iostream>
@@ -11,9 +11,17 @@
 #include "GetInputFromUser.h"
 #include "ProgressInfo.h"
 
+/*
+ * main [INPUT.TXT] [OUTPUT.TXT]
+ *
+ * If no input, or output is specified, the user can manually enter the file names.
+ */
 int main( int argc, char *const *argv )
 {
 	try {
+		// Asks the user for an input file,
+		// if the file is already set via command line arg,
+		// no question will be asked
 		GetInputFileFromUser ask_for_input_file( "Please specify an input file", argc > 1 ? argv[1] : "" );
 
 		std::string input_file = ask_for_input_file.ask();
@@ -51,6 +59,7 @@ int main( int argc, char *const *argv )
 				map.addLine(line);
 
 			} else if( std::holds_alternative<HydrothermalVentingFileParser::EndOfFile>( res ) ) {
+				// we finished parsing
 				break;
 
 			} else {
@@ -98,6 +107,8 @@ int main( int argc, char *const *argv )
 
 		GetYesNoFromUser write_output( "Do you wan't to save dangerous points to a file?" );
 
+		// if the output file is set via command line arg [OUTPUT.TXT]
+		// or the user answered the question above with yes
 		if( argc > 2 || !write_output.ask().empty() ) {
 			GetOutputFileFromUser output_file_name( "Please enter a file name to save dangerous points", argc > 2 ? argv[2] : "" );
 
