@@ -16,7 +16,7 @@ AC_DEFUN([CXX_FLAGS_CHECK],
 ])
 
 
-AC_INIT(hydrovent_warning, 0.1)
+AC_INIT(hydrovent_warning, 0.2)
 AM_INIT_AUTOMAKE([subdir-objects -Wall])
 AC_PROG_CC
 AC_CONFIG_FILES([
