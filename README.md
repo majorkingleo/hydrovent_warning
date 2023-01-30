@@ -12,6 +12,7 @@
 ## Building on a Linux like system (also cygwin)
 
 ### if you have cloned this project from github
+(automake, autoconf, aclocal tools required)
 
 ```
 git clone https://github.com/majorkingleo/hydrovent_warning/
