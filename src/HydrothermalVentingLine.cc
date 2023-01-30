@@ -2,7 +2,7 @@
  * HydrothermalVentingLine.cc
  *
  *  Created on: 27.01.2023
- *      Author: martin
+ *      Author: Martin Oberzalek <oberzalek@gmx.at>
  */
 
 #include "HydrothermalVentingLine.h"
@@ -32,12 +32,6 @@ bool HydrothermalVentingLine::isValid() const
 
 	int x_diff = x2 - x1;
 	int y_diff = y2 - y1;
-
-	// no line, this is a point
-	if( x_diff == 0 &&
-		y_diff == 0 ) {
-		return false;
-	}
 
 	// only when x_diff equals y_diff we have 45° use case
 	if( x_diff == y_diff ) {
