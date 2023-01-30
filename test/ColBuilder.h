@@ -1,9 +1,19 @@
+/*
+ * ColBuilder.h
+ *
+ *  Created on: 27.01.2023
+ *      Author: Martin Oberzalek <oberzalek@gmx.at>
+ */
+
 #ifndef TEST_COL_BUILDER_H
 #define TEST_COL_BUILDER_H
 
 #include <vector>
 #include <string>
 
+/*
+ * ASCII art class for displaying data in rows and cols
+ */
 class ColBuilder
 {
 	std::vector<std::string> col_headers;
@@ -54,6 +64,8 @@ public:
 
 protected:
 	static std::string fill_leading( std::string s, const std::string fill_sign, unsigned int len );
+	static std::string strip_escape_sequences( const std::string & str );
+	static unsigned int count_visible_size( const std::string & str );
 
 };
 

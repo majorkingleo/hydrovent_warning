@@ -1,3 +1,10 @@
+/*
+ * ColBuilder.cc
+ *
+ *  Created on: 27.01.2023
+ *      Author: Martin Oberzalek <oberzalek@gmx.at>
+ */
+
 #include <sstream>
 #include <iostream>
 #include "ColBuilder.h"
@@ -71,7 +78,7 @@ int ColBuilder::getMaxNumOfRows() const
 	return max_rows;
 }
 
-std::string strip_escape_sequences( const std::string & str )
+std::string ColBuilder::strip_escape_sequences( const std::string & str )
 {
 	std::string::size_type start_pos = str.find("\033[");
 
@@ -104,7 +111,7 @@ std::string strip_escape_sequences( const std::string & str )
 	return strip_escape_sequences( s );
 }
 
-unsigned int count_visible_size( const std::string & str )
+unsigned int ColBuilder::count_visible_size( const std::string & str )
 {
 	std::string s = strip_escape_sequences( str );
 	return s.size();
