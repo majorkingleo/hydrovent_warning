@@ -4,7 +4,7 @@
 
 * use Microsoft Visual Studio 2022 Community Edition https://visualstudio.microsoft.com/de/vs/
 * install Package "Desktop Development with C++"
-* start it;
+* start it
   * clone a repository from github https://github.com/majorkingleo/hydrovent_warning/
   * or unpack zip file and 
 * open within the directory HydroVentWarning the project file HydroVentWarning.sln
